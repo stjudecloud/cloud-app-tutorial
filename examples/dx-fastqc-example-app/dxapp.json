@@ -1,0 +1,66 @@
+{
+  "name": "dx-fastqc-example-app",
+  "title": "FastQC Example Application",
+  "summary": "Uses FastQC to generate quality control reports on raw sequence data.",
+  "dxapi": "1.0.0",
+  "version": "0.0.1",
+  "inputSpec": [
+    {
+      "name": "bam_file",
+      "label": "BAM File",
+      "class": "file",
+      "optional": false,
+      "patterns": [
+        "*"
+      ],
+      "help": ""
+    }
+  ],
+  "outputSpec": [
+    {
+      "name": "fastqc_html",
+      "label": "FastQC HTML Report",
+      "class": "file",
+      "patterns": [
+        "*"
+      ],
+      "help": ""
+    },
+    {
+      "name": "fastqc_zip",
+      "label": "FastQC Zip File",
+      "class": "file",
+      "patterns": [
+        "*"
+      ],
+      "help": ""
+    }
+  ],
+  "runSpec": {
+    "timeoutPolicy": {
+      "*": {
+        "hours": 48
+      }
+    },
+    "interpreter": "bash",
+    "release": "14.04",
+    "distribution": "Ubuntu",
+    "file": "src/dx-fastqc-example-app.sh",
+    "execDepends": [
+      {"name": "openjdk-7-jre-headless",
+       "package_manager": "apt"}
+    ]
+  },
+  "access": {
+    "project": "CONTRIBUTE"
+  },
+  "regionalOptions": {
+    "azure:westus": {
+      "systemRequirements": {
+        "*": {
+          "instanceType": "azure:mem1_ssd1_x4"
+        }
+      }
+    }
+  }
+}
